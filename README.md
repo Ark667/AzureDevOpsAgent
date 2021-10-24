@@ -84,7 +84,7 @@ Check the Microsoft doc for more info: https://docs.microsoft.com/en-us/azure/de
 You can execute current release with Docker.
 
 ```pws
-docker run --rm -it -v "$env:USERPROFILE\.kube:/root/.kube" ghcr.io/ark667/azuredevopsagent:master bash
+docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] --name AzureDevOpsAgent --detach ghcr.io/ark667/azuredevopsagent:master
 ```
 
 You can also clone the repo and build the image yourself.
