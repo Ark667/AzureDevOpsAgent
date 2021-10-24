@@ -25,7 +25,7 @@
 <h1 align="center">AzureDevOpsAgent</h1>
 
   <p align="center">
-    Docker image to keep Kubernetes regular tools version up to date without installing local.
+    Ready docker image with Azure Devops agent with some tools to run pipelines included.
     <br />
     <a href="https://github.com/Ark667/AzureDevOpsAgent"><strong>Explore the docs »</strong></a>
     <br />    
