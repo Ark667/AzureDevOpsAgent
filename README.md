@@ -25,7 +25,7 @@
 <h1 align="center">AzureDevOpsAgent</h1>
 
   <p align="center">
-    Docker image to keep Kubernetes regular tools version up to date without installing local.
+    Ready to go docker image with Azure Devops agent with some tools to run pipelines included.
     <br />
     <a href="https://github.com/Ark667/AzureDevOpsAgent"><strong>Explore the docs »</strong></a>
     <br />    
@@ -52,7 +52,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <!-- <li><a href="#acknowledgments">Acknowledgments</a></li> -->
   </ol>
 </details>
 
@@ -86,7 +86,7 @@ Check the Microsoft doc for more info: https://docs.microsoft.com/en-us/azure/de
 You can execute current release with Docker.
 
 ```pws
-docker run --rm -it -v "$env:USERPROFILE\.kube:/root/.kube" ghcr.io/ark667/azuredevopsagent:master bash
+docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] --name AzureDevOpsAgent --detach ghcr.io/ark667/azuredevopsagent:master
 ```
 
 You can also clone the repo and build the image yourself.
@@ -155,12 +155,12 @@ Project Link: [https://github.com/Ark667/AzureDevOpsAgent](https://github.com/Ar
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-<!-- ACKNOWLEDGMENTS -->
+<!-- ACKNOWLEDGMENTS
 ## Acknowledgments
 
-* [https://github.com/Gallore/yaml_cli](https://github.com/Gallore/yaml_cli)
+* []()
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p> -->
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
