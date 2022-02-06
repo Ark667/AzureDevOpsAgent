@@ -44,7 +44,6 @@ RUN wget -q https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux
 RUN unzip terraform_1.0.0_linux_amd64.zip
 RUN mv terraform /usr/local/bin/
 RUN rm terraform_1.0.0_linux_amd64.zip
-COPY ./credentials.tfrc.json /root/.terraform.d/credentials.tfrc.json
 
 # Install SqlPackage
 RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497 \
@@ -52,9 +51,12 @@ RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497 \
     && chmod +x /tmp/sqlpackage/sqlpackage
 RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 
+# Install Java
+RUN apt-get install default-jre
+
 WORKDIR /azp
 
-# Copy pipeline agent script
+# Copy MS pipeline agent script
 COPY ./start.sh .
 RUN chmod +x start.sh && sed -i -e 's/\r$//' start.sh
 

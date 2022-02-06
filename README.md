@@ -74,6 +74,8 @@ Check the Microsoft doc for more info: https://docs.microsoft.com/en-us/azure/de
 * [Powershell](https://docs.microsoft.com/powershell/)
 * [Terraform](https://www.terraform.io/)
 * [SqlPackage](https://docs.microsoft.com/es-es/sql/tools/sqlpackage/sqlpackage?view=sql-server-ver15)
+* [Terraform](https://www.terraform.io/)
+* [Java](https://www.java.com/)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -91,7 +93,7 @@ You can also clone the repo and build the image yourself.
 
 ```pws
 git clone https://github.com/Ark667/AzureDevOpsAgent.git
-Docker build -t AzureDevOpsAgent .\AzureDevOpsAgent
+Docker build -t azuredevopsagent .\AzureDevOpsAgent
 ```
 
 
@@ -104,13 +106,13 @@ Docker build -t AzureDevOpsAgent .\AzureDevOpsAgent
 Basic usage is pretty straightforrward, just run the container with your organization name and access token. It will connect automatically and become available in Azure Devops portal to process pipielines.
 
 ```pws
-docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] --name AzureDevOpsAgent --detach azuredevopsagent:latest
+docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] --name AzureDevOpsAgent --detach azuredevopsagent:master
 ```
 
 Setting this volume, it will be able to execute docker builds using the host machine docker service.
 
 ```pws
-docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] --name AzureDevOpsAgent -v /var/run/docker.sock:/var/run/docker.sock --detach azuredevopsagent:latest
+docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] --name AzureDevOpsAgent -v /var/run/docker.sock:/var/run/docker.sock --detach azuredevopsagent:master
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
