@@ -22,12 +22,13 @@ RUN apt-get install -y --no-install-recommends \
         mailutils \
         default-jre
 
-# Install netcore SDK
+# Install .net SDKs
 RUN wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 RUN apt-get update
 RUN apt-get install -y dotnet-sdk-3.1
 RUN apt-get install -y dotnet-sdk-5.0
+RUN apt-get install -y dotnet-sdk-6.0
 
 # Install docker 
 RUN apt-get install -y docker.io
