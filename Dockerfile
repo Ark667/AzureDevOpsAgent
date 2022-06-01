@@ -56,6 +56,14 @@ RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 # Install Java
 RUN apt-get install default-jre
 
+# Install AWS CLI
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install
+RUN rm awscliv2.zip
+RUN rm aws -r
+RUN export PATH=/usr/local/bin:$PATH
+
 WORKDIR /azp
 
 # Copy MS pipeline agent script
