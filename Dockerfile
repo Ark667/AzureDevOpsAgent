@@ -29,6 +29,7 @@ RUN apt-get update
 RUN apt-get install -y dotnet-sdk-3.1
 RUN apt-get install -y dotnet-sdk-5.0
 RUN apt-get install -y dotnet-sdk-6.0
+RUN apt-get install -y dotnet-sdk-7.0
 
 # Install docker 
 RUN apt-get install -y docker.io
