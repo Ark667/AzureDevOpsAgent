@@ -31,10 +31,10 @@ RUN apt-get install -y dotnet-sdk-5.0
 RUN apt-get install -y dotnet-sdk-6.0
 RUN apt-get install -y dotnet-sdk-7.0
 
-# Install docker 
+# Install Docker 
 RUN apt-get install -y docker.io
 
-# Install powershell
+# Install Powershell
 RUN apt-get update
 RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
