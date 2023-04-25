@@ -20,13 +20,13 @@ RUN apt-get install -y --no-install-recommends \
         libgdiplus \
         locales \
         mailutils \
-        default-jre
+        default-jre \
+        unzip
 
 # Install .net SDKs
 RUN wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 RUN apt-get update
-RUN apt-get install -y dotnet-sdk-3.1
 RUN apt-get install -y dotnet-sdk-5.0
 RUN apt-get install -y dotnet-sdk-6.0
 RUN apt-get install -y dotnet-sdk-7.0
@@ -42,7 +42,6 @@ RUN apt-get update
 RUN apt-get install -y powershell
 
 # Install Terraform
-RUN apt-get install -y unzip
 RUN wget -q https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_amd64.zip
 RUN unzip terraform_1.0.0_linux_amd64.zip
 RUN mv terraform /usr/local/bin/
