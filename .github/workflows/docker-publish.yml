@@ -50,7 +50,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           
-      # For github CI
+      # multiple platforms feature is currently not supported for docker driver
+      # https://stackoverflow.com/questions/72707357/buildx-failed-with-error-cache-export-feature-is-currently-not-supported-for-d
+      # docker/build-push-action/docs/advanced/cache.md
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
         
