@@ -24,14 +24,15 @@ RUN apt-get install -y --no-install-recommends \
         unzip
 
 # Install .net SDKs
-RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-RUN dpkg -i packages-microsoft-prod.deb
-RUN apt-get update
-RUN apt-get install -y dotnet-sdk-6.0
-RUN apt-get install -y dotnet-sdk-7.0
+# https://learn.microsoft.com/es-es/dotnet/core/install/linux-ubuntu#troubleshooting
+# https://learn.microsoft.com/es-es/dotnet/core/install/linux-scripted-manual#manual-install
+RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+RUN chmod +x ./dotnet-install.sh
+RUN ./dotnet-install.sh --channel 6.0
+RUN ./dotnet-install.sh --channel 7.0
 
-# # Install Docker 
-# RUN apt-get install -y docker.io
+# Install Docker 
+RUN apt-get install -y docker.io
 
 # # Install Powershell
 # RUN apt-get update
@@ -52,16 +53,16 @@ RUN apt-get install -y dotnet-sdk-7.0
 #     && chmod +x /tmp/sqlpackage/sqlpackage
 # RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 
-# # Install Java
-# RUN apt-get install default-jre
+# Install Java
+RUN apt-get install default-jre
 
-# # Install AWS CLI
-# RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-# RUN unzip awscliv2.zip
-# RUN ./aws/install
-# RUN rm awscliv2.zip
-# RUN rm aws -r
-# RUN export PATH=/usr/local/bin:$PATH
+# Install AWS CLI
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install
+RUN rm awscliv2.zip
+RUN rm aws -r
+RUN export PATH=/usr/local/bin:$PATH
 
 WORKDIR /azp
 
