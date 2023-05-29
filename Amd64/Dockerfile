@@ -20,7 +20,6 @@ RUN apt-get install -y --no-install-recommends \
         libgdiplus \
         locales \
         mailutils \
-        default-jre \
         unzip
 
 # Install .net SDKs

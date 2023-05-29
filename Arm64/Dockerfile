@@ -20,7 +20,6 @@ RUN apt-get install -y --no-install-recommends \
         libgdiplus \
         locales \
         mailutils \
-        default-jre \
         unzip
 
 # Install .net SDKs
@@ -28,7 +27,6 @@ RUN apt-get install -y --no-install-recommends \
 # https://learn.microsoft.com/es-es/dotnet/core/install/linux-scripted-manual#manual-install
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 RUN chmod +x ./dotnet-install.sh
-RUN ./dotnet-install.sh --channel 6.0
 RUN ./dotnet-install.sh --channel 7.0
 
 # Install Docker 
@@ -47,11 +45,11 @@ RUN apt-get install -y docker.io
 # RUN mv terraform /usr/local/bin/
 # RUN rm terraform_1.0.0_linux_amd64.zip
 
-# # Install SqlPackage
-# RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497 \
-#     && unzip sqlpackage.zip -d /tmp/sqlpackage \
-#     && chmod +x /tmp/sqlpackage/sqlpackage
-# RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
+# Install SqlPackage
+RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497 \
+    && unzip sqlpackage.zip -d /tmp/sqlpackage \
+    && chmod +x /tmp/sqlpackage/sqlpackage
+RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 
 # Install Java
 RUN apt-get install default-jre
