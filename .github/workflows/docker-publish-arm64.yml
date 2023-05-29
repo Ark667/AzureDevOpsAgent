@@ -70,4 +70,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/arm64
-          file: ./Dockerfile_Arm64
+          file: ./Arm64/Dockerfile
