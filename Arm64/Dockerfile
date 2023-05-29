@@ -39,16 +39,16 @@ RUN apt-get install -y docker.io
 # RUN apt-get update
 # RUN apt-get install -y powershell
 
-# # Install Terraform
-# RUN wget -q https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_amd64.zip
-# RUN unzip terraform_1.0.0_linux_amd64.zip
-# RUN mv terraform /usr/local/bin/
-# RUN rm terraform_1.0.0_linux_amd64.zip
+# Install Terraform
+RUN wget -q https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_arm64.zip
+RUN unzip terraform_1.0.0_linux_arm64.zip
+RUN mv terraform /usr/local/bin/
+RUN rm terraform_1.0.0_linux_arm64.zip
 
 # Install SqlPackage
-RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497 \
-    && unzip sqlpackage.zip -d /tmp/sqlpackage \
-    && chmod +x /tmp/sqlpackage/sqlpackage
+RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497
+RUN unzip sqlpackage.zip -d /tmp/sqlpackage
+RUN chmod +x /tmp/sqlpackage/sqlpackage
 RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 
 # Install Java
