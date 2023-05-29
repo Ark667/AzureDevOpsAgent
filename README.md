@@ -70,12 +70,12 @@ Check the Microsoft doc for more info: https://docs.microsoft.com/en-us/azure/de
 
 * [Ubuntu](https://ubuntu.com/)
 * [Docker](https://www.docker.com/)
-* [.Net5](https://dotnet.microsoft.com/download/dotnet/5.0)
+* [.Net7](https://dotnet.microsoft.com/download/dotnet/7.0)
 * [Powershell](https://docs.microsoft.com/powershell/)
 * [Terraform](https://www.terraform.io/)
 * [SqlPackage](https://docs.microsoft.com/es-es/sql/tools/sqlpackage/sqlpackage?view=sql-server-ver15)
-* [Terraform](https://www.terraform.io/)
 * [Java](https://www.java.com/)
+* [AwsCli](https://aws.amazon.com/es/cli/)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
