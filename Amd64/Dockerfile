@@ -5,7 +5,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
 # Install default modules
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
         apt-transport-https \
         apt-utils \
         ca-certificates \

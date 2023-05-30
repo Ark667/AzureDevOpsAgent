@@ -5,7 +5,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
 # Install default modules
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
         apt-transport-https \
         apt-utils \
         ca-certificates \
@@ -25,8 +25,6 @@ RUN apt-get install -y --no-install-recommends \
         mailutils \
         unzip
 
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-
 # Install .net SDKs
 # https://learn.microsoft.com/es-es/dotnet/core/install/linux-ubuntu#troubleshooting
 # https://learn.microsoft.com/es-es/dotnet/core/install/linux-scripted-manual#manual-install
@@ -38,11 +36,11 @@ RUN ./dotnet-install.sh --channel 7.0
 RUN apt-get install -y docker.io
 
 # # Install Powershell
-# RUN apt-get update
-# RUN wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
-# RUN dpkg -i packages-microsoft-prod.deb
-# RUN apt-get update
-# RUN apt-get install -y powershell
+RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.4/powershell-7.3.4-linux-x64.tar.gz
+RUN mkdir -p /opt/microsoft/powershell/7
+RUN tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
+RUN chmod +x /opt/microsoft/powershell/7/pwsh
+RUN ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
 
 # Install Terraform
 RUN wget -q https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_arm64.zip
