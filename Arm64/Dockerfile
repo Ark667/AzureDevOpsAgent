@@ -10,22 +10,22 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommend
         apt-utils \
         ca-certificates \
         curl \
-        jq \
-        lsb-release \
-        software-properties-common \
         git \
         iputils-ping \
+        jq \
         libcurl4 \
-        libunwind8 \
-        netcat \
-        libssl1.0 \
-        wget \
         libgdiplus \
+        libssl1.0 \
+        libunwind8 \
         locales \
+        lsb-release \
         mailutils \
-        unzip
+        netcat \
+        software-properties-common \
+        unzip \
+        wget
 
-# Install .net SDKs
+# Install .Net SDK (arm64)
 # https://learn.microsoft.com/es-es/dotnet/core/install/linux-ubuntu#troubleshooting
 # https://learn.microsoft.com/es-es/dotnet/core/install/linux-scripted-manual#manual-install
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
@@ -36,14 +36,14 @@ RUN ln -s ~/.dotnet/dotnet /usr/bin/dotnet
 # Install Docker 
 RUN apt-get install -y docker.io
 
-# Install Powershell
-RUN curl -L -o /tmp/powershell.tar.gz powershell-7.4.0-preview.3-linux-arm64.tar.gz
-RUN mkdir -p /opt/microsoft/powershell/7
-RUN tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
-RUN chmod +x /opt/microsoft/powershell/7/pwsh
-RUN ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+# # Install Powershell (arm64)
+# RUN curl -L -o /tmp/powershell.tar.gz powershell-7.4.0-preview.3-linux-arm64.tar.gz
+# RUN mkdir -p /opt/microsoft/powershell/7
+# RUN tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
+# RUN chmod +x /opt/microsoft/powershell/7/pwsh
+# RUN ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
 
-# Install Terraform
+# Install Terraform (arm64)
 RUN wget -q https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_arm64.zip
 RUN unzip terraform_1.0.0_linux_arm64.zip
 RUN mv terraform /usr/local/bin/
@@ -58,7 +58,7 @@ RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 # Install Java
 RUN apt-get install -y default-jre
 
-# Install AWS CLI
+# Install AWS CLI (arm64)
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
 RUN unzip awscliv2.zip
 RUN ./aws/install
