@@ -32,31 +32,36 @@ RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 RUN chmod +x ./dotnet-install.sh
 RUN ./dotnet-install.sh --channel 7.0
 RUN ln -s ~/.dotnet/dotnet /usr/bin/dotnet
+RUN dotnet --version
 
 # Install Docker 
 RUN apt-get install -y docker.io
+RUN docker --version
 
-# # Install Powershell (arm64)
-# RUN curl -L -o /tmp/powershell.tar.gz powershell-7.4.0-preview.3-linux-arm64.tar.gz
-# RUN mkdir -p /opt/microsoft/powershell/7
-# RUN tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
-# RUN chmod +x /opt/microsoft/powershell/7/pwsh
-# RUN ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+# Install Powershell (arm64)
+RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.4/powershell-7.3.4-linux-arm64.tar.gz
+RUN mkdir -p /opt/microsoft/powershell/7
+RUN tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
+RUN chmod +x /opt/microsoft/powershell/7/pwsh
+RUN ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+RUN pwsh -version
 
 # Install Terraform (arm64)
 RUN wget -q https://releases.hashicorp.com/terraform/1.0.0/terraform_1.0.0_linux_arm64.zip
 RUN unzip terraform_1.0.0_linux_arm64.zip
 RUN mv terraform /usr/local/bin/
 RUN rm terraform_1.0.0_linux_arm64.zip
+RUN terraform --version
 
-# Install SqlPackage
-RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497
-RUN unzip sqlpackage.zip -d /tmp/sqlpackage
-RUN chmod +x /tmp/sqlpackage/sqlpackage
-RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
+# # Install SqlPackage
+# RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497
+# RUN unzip sqlpackage.zip -d /tmp/sqlpackage
+# RUN chmod +x /tmp/sqlpackage/sqlpackage
+# RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 
 # Install Java
 RUN apt-get install -y default-jre
+RUN java -version
 
 # Install AWS CLI (arm64)
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
@@ -65,6 +70,7 @@ RUN ./aws/install
 RUN rm awscliv2.zip
 RUN rm aws -r
 RUN export PATH=/usr/local/bin:$PATH
+RUN aws --version
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 ENV TARGETARCH=linux-arm64
