@@ -31,12 +31,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommend
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 RUN chmod +x ./dotnet-install.sh
 RUN ./dotnet-install.sh --channel 7.0
+RUN ln -s ~/.dotnet/dotnet /usr/bin/dotnet
 
 # Install Docker 
 RUN apt-get install -y docker.io
 
-# # Install Powershell
-RUN curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.4/powershell-7.3.4-linux-x64.tar.gz
+# Install Powershell
+RUN curl -L -o /tmp/powershell.tar.gz powershell-7.4.0-preview.3-linux-arm64.tar.gz
 RUN mkdir -p /opt/microsoft/powershell/7
 RUN tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
 RUN chmod +x /opt/microsoft/powershell/7/pwsh
@@ -58,7 +59,7 @@ RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 RUN apt-get install -y default-jre
 
 # Install AWS CLI
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
 RUN unzip awscliv2.zip
 RUN ./aws/install
 RUN rm awscliv2.zip
