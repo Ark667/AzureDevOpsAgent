@@ -1,15 +1,18 @@
 FROM ubuntu:20.04
 
-ENV DEBIAN_FRONTEND=noninteractive
-RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
 # Install default modules
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
         apt-transport-https \
+        apt-utils \
         ca-certificates \
         curl \
         jq \
+        lsb-release \
+        software-properties-common \
         git \
         iputils-ping \
         libcurl4 \
@@ -21,6 +24,8 @@ RUN apt-get install -y --no-install-recommends \
         locales \
         mailutils \
         unzip
+
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 # Install .net SDKs
 # https://learn.microsoft.com/es-es/dotnet/core/install/linux-ubuntu#troubleshooting
@@ -62,10 +67,12 @@ RUN rm awscliv2.zip
 RUN rm aws -r
 RUN export PATH=/usr/local/bin:$PATH
 
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+ENV TARGETARCH=linux-arm64
 WORKDIR /azp
 
 # Copy MS pipeline agent script
 COPY ./start.sh .
-RUN chmod +x start.sh && sed -i -e 's/\r$//' start.sh
+RUN chmod +x start.sh
 
-CMD ["./start.sh"]
+ENTRYPOINT [ "./start.sh" ]
