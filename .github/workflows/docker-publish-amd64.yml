@@ -8,6 +8,9 @@ name: Docker-Amd64
 on:
   push:
     branches: [ master ]
+    paths:
+      - Amd64/**
+      - start.sh
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:

@@ -8,6 +8,9 @@ name: Docker-Arm64
 on:
   push:
     branches: [ master ]
+    paths:
+      - Arm64/**
+      - start.sh
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
