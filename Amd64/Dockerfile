@@ -48,12 +48,6 @@ RUN unzip terraform_1.0.0_linux_amd64.zip
 RUN mv terraform /usr/local/bin/
 RUN rm terraform_1.0.0_linux_amd64.zip
 
-# Install SqlPackage
-RUN wget -O sqlpackage.zip https://go.microsoft.com/fwlink/?linkid=2143497
-RUN unzip sqlpackage.zip -d /tmp/sqlpackage
-RUN chmod +x /tmp/sqlpackage/sqlpackage
-RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
-
 # Install Java
 RUN apt-get install -y default-jre
 

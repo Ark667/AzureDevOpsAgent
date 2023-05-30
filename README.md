@@ -73,10 +73,8 @@ Check the Microsoft doc for more info: https://docs.microsoft.com/en-us/azure/de
 * [.Net7](https://dotnet.microsoft.com/download/dotnet/7.0)
 * [Powershell](https://docs.microsoft.com/powershell/)
 * [Terraform](https://www.terraform.io/)
-* [SqlPackage](https://docs.microsoft.com/es-es/sql/tools/sqlpackage/sqlpackage?view=sql-server-ver15)
 * [Java](https://www.java.com/)
 * [AwsCli](https://aws.amazon.com/es/cli/)
-
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
