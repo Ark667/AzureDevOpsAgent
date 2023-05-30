@@ -106,13 +106,13 @@ Docker build -t azuredevopsagent .\AzureDevOpsAgent
 Basic usage is pretty straightforrward, just run the container with your organization name and access token. It will connect automatically and become available in Azure Devops portal to process pipielines.
 
 ```pws
-docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] --name AzureDevOpsAgent --detach azuredevopsagent:master
+docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] -e AZP_AGENT_NAME=AzureDevOpsAgent --name AzureDevOpsAgent --detach azuredevopsagent:master
 ```
 
 Setting this volume, it will be able to execute docker builds using the host machine docker service.
 
 ```pws
-docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] --name AzureDevOpsAgent -v /var/run/docker.sock:/var/run/docker.sock --detach azuredevopsagent:master
+docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] -e AZP_AGENT_NAME=AzureDevOpsAgent --name AzureDevOpsAgent -v /var/run/docker.sock:/var/run/docker.sock --detach azuredevopsagent:master
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
