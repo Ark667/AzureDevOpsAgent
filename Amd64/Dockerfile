@@ -55,7 +55,7 @@ RUN chmod +x /tmp/sqlpackage/sqlpackage
 RUN ln -s /tmp/sqlpackage/sqlpackage /usr/local/bin/sqlpackage
 
 # Install Java
-RUN apt-get install default-jre
+RUN apt-get install -y default-jre
 
 # Install AWS CLI
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
