@@ -113,6 +113,12 @@ Setting this volume, it will be able to execute docker builds using the host mac
 docker run -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] -e AZP_AGENT_NAME=AzureDevOpsAgent --name AzureDevOpsAgent -v /var/run/docker.sock:/var/run/docker.sock --detach azuredevopsagent:master
 ```
 
+The image is built for Amd64 and Arm64. Docker will pull the matching architecture on the host, but you can take it explicitly.
+
+```pws
+docker run --restart="always" --platform arm64 -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] -e AZP_AGENT_NAME=AzureDevOpsAgent --name AzureDevOpsAgent -v /var/run/docker.sock:/var/run/docker.sock --detach ghcr.io/ark667/azuredevopsagent:master
+```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
