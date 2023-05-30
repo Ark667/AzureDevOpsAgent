@@ -30,6 +30,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommend
 # https://learn.microsoft.com/es-es/dotnet/core/install/linux-scripted-manual#manual-install
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 RUN chmod +x ./dotnet-install.sh
+RUN ./dotnet-install.sh --channel 6.0
 RUN ./dotnet-install.sh --channel 7.0
 RUN ln -s ~/.dotnet/dotnet /usr/bin/dotnet
 RUN dotnet --version
