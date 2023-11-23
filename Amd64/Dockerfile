@@ -4,25 +4,14 @@ FROM ubuntu:22.04
 RUN apt update
 RUN apt upgrade -y
 RUN apt install -y \
-        apt-transport-https \
-        apt-utils \
-        ca-certificates \
         curl \
-        jq \
-        lsb-release \
-        software-properties-common \
         git \
-        iputils-ping \
-        libcurl4 \
-        libunwind8 \
-        netcat \
-        libssl1.0 \
+        jq \
+        libicu70 \
         wget \
-        libgdiplus \
         locales \
         mailutils \
-        unzip \
-        libicu70
+        unzip
 
 # Install .net SDKs
 RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
