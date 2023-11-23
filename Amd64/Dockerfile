@@ -1,11 +1,9 @@
-FROM ubuntu:20.04
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+FROM ubuntu:22.04
 
 # Install default modules
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
+RUN apt update
+RUN apt upgrade -y
+RUN apt install -y \
         apt-transport-https \
         apt-utils \
         ca-certificates \
@@ -23,10 +21,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommend
         libgdiplus \
         locales \
         mailutils \
-        unzip
+        unzip \
+        libicu70
 
 # Install .net SDKs
-RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 RUN apt-get update
 RUN apt-get install -y dotnet-sdk-6.0
@@ -37,7 +36,7 @@ RUN apt-get install -y docker.io
 
 # Install Powershell
 RUN apt-get update
-RUN wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+RUN wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 RUN apt-get update
 RUN apt-get install -y powershell
@@ -59,12 +58,14 @@ RUN rm awscliv2.zip
 RUN rm aws -r
 RUN export PATH=/usr/local/bin:$PATH
 
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 ENV TARGETARCH=linux-amd64
-WORKDIR /azp
+WORKDIR /azp/
 
-# Copy MS pipeline agent script
-COPY ./start.sh .
-RUN chmod +x start.sh
+COPY ./start.sh ./
+RUN chmod +x ./start.sh
 
-ENTRYPOINT [ "./start.sh" ]
+RUN useradd agent
+RUN chown agent ./
+USER agent
+
+ENTRYPOINT ./start.sh
