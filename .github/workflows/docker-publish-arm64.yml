@@ -6,6 +6,7 @@ name: Docker-Arm64
 # documentation.
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
     paths:
