@@ -101,6 +101,18 @@ Docker build -t azuredevopsagent .\AzureDevOpsAgent
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+Build image.
+
+```pws
+docker build -f .\Amd64\Dockerfile -t azure-devops-agent  .
+```
+
+Check creted image.
+
+```pws
+docker images --filter "reference=azure*"
+```
+
 Basic usage is pretty straightforrward, just run the container with your organization name and access token. It will connect automatically and become available in Azure Devops portal to process pipielines.
 
 ```pws
@@ -118,6 +130,8 @@ The image is built for Amd64 and Arm64. Docker will pull the matching architectu
 ```pws
 docker run --restart="always" --platform arm64 -e AZP_URL="https://dev.azure.com/[yourorganization]" -e AZP_TOKEN=[token] -e AZP_AGENT_NAME=AzureDevOpsAgent -e AZP_POOL=Mac --name AzureDevOpsAgent -v /var/run/docker.sock:/var/run/docker.sock --detach ghcr.io/ark667/azuredevopsagent:master
 ```
+
+Be sure that start.sh script has LF line endings.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

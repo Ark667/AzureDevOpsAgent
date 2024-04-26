@@ -1,5 +1,8 @@
 FROM ubuntu:22.04
 
+# Evitar preguntas al configurar paquetes
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install default modules
 RUN apt update
 RUN apt upgrade -y
@@ -14,13 +17,17 @@ RUN apt install -y \
         unzip
 
 # Install .net SDKs
-RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-RUN dpkg -i packages-microsoft-prod.deb
-RUN apt-get update
-RUN apt-get install -y dotnet-sdk-6.0
-RUN apt-get install -y dotnet-sdk-7.0
+# https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install
+# https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
+RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+RUN chmod +x ./dotnet-install.sh
+RUN ./dotnet-install.sh --channel 6.0 --install-dir /usr/share/dotnet
+RUN ./dotnet-install.sh --channel 7.0 --install-dir /usr/share/dotnet
+RUN ./dotnet-install.sh --channel 8.0 --install-dir /usr/share/dotnet
+ENV DOTNET_ROOT=/usr/share/dotnet
+ENV PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
-# Install Docker 
+# Install Docker
 RUN apt-get install -y docker.io
 
 # Install Powershell
@@ -45,16 +52,13 @@ RUN unzip awscliv2.zip
 RUN ./aws/install
 RUN rm awscliv2.zip
 RUN rm aws -r
-RUN export PATH=/usr/local/bin:$PATH
+RUN export PATH=$PATH:/usr/local/bin
 
-ENV TARGETARCH=linux-amd64
 WORKDIR /azp/
 
-COPY ./start.sh ./
+ENV AGENT_ALLOW_RUNASROOT="true"
+ENV TARGETARCH=linux-x64
+COPY ../start.sh ./start.sh
 RUN chmod +x ./start.sh
-
-RUN useradd agent
-RUN chown agent ./
-USER agent
 
 ENTRYPOINT ./start.sh
