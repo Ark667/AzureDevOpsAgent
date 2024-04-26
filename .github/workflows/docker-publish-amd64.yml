@@ -1,4 +1,4 @@
-name: Docker-x64
+name: Docker-Amd64
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -10,7 +10,7 @@ on:
   push:
     branches: [ master ]
     paths:
-      - x64/**
+      - Amd64/**
       - start.sh
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
@@ -21,7 +21,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: azure-devops-agent
+  IMAGE_NAME: ark667/azure-devops-agent
 
 jobs:
   build:
@@ -63,4 +63,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
-          file: ./x64/Dockerfile
+          file: ./Amd64/Dockerfile
