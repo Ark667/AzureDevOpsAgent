@@ -1,4 +1,4 @@
-name: Docker-Amd64
+name: Docker-x64
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -10,7 +10,7 @@ on:
   push:
     branches: [ master ]
     paths:
-      - Amd64/**
+      - x64/**
       - start.sh
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
@@ -64,4 +64,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
-          file: ./Amd64/Dockerfile
+          file: ./x64/Dockerfile
