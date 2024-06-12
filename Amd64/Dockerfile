@@ -44,7 +44,8 @@ RUN mv terraform /usr/local/bin/
 RUN rm terraform_1.0.0_linux_amd64.zip
 
 # Install Java
-RUN apt-get install -y default-jre
+RUN apt-get install -y openjdk-17-jre
+RUN java -version
 
 # Install AWS CLI
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"

@@ -55,7 +55,7 @@ RUN rm terraform_1.0.0_linux_arm64.zip
 RUN terraform --version
 
 # Install Java
-RUN apt-get install -y default-jre
+RUN apt-get install -y openjdk-17-jre
 RUN java -version
 
 # Install AWS CLI (arm64)
